@@ -851,7 +851,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pauly, et al.</td>
-<td class="center">Expires 4 April 2022</td>
+<td class="center">Expires 18 April 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -864,12 +864,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-add-ddr-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-10-01" class="published">1 October 2021</time>
+<time datetime="2021-10-15" class="published">15 October 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-04-04">4 April 2022</time></dd>
+<dd class="expires"><time datetime="2022-04-18">18 April 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -937,7 +937,7 @@ is known.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1141,7 +1141,7 @@ such as "dohpath", are defined by <span>[<a href="#I-D.ietf-add-svcb-dns" class=
 by querying for <code>_dns.example.net</code>:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-4">
 <pre>
-_dns.example.net  7200  IN SVCB 1 . (
+_dns.example.net.  7200  IN SVCB 1 example.net. (
      alpn=h2 dohpath=/dns-query{?dns} )
 </pre><a href="#section-3-4" class="pilcrow">¶</a>
 </div>
@@ -1308,9 +1308,9 @@ protocols available. In the following example, the SVCB answers indicate that
 indicates a higher priority than the DoT server.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5-4">
 <pre>
-_dns.resolver.example.com  7200  IN SVCB 1 . (
+_dns.resolver.example.com.  7200  IN SVCB 1 resolver.example.com. (
      alpn=h2 dohpath=/dns-query{?dns} )
-_dns.resolver.example.com  7200  IN SVCB 2 . (
+_dns.resolver.example.com.  7200  IN SVCB 1 resolver.example.com. (
      alpn=dot )
 </pre><a href="#section-5-4" class="pilcrow">¶</a>
 </div>
@@ -1442,7 +1442,7 @@ communication. For more context, see the rationale behind "ipv4only.arpa" in
 <dd class="break"></dd>
 <dt id="I-D.ietf-dnsop-svcb-https">[I-D.ietf-dnsop-svcb-https]</dt>
         <dd>
-<span class="refAuthor">Schwartz, B.</span>, <span class="refAuthor">Bishop, M.</span>, and <span class="refAuthor">E. Nygren</span>, <span class="refTitle">"Service binding and parameter specification via the DNS (DNS SVCB and HTTPS RRs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-dnsop-svcb-https-07</span>, <time datetime="2021-08-05" class="refDate">5 August 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-07">https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Schwartz, B.</span>, <span class="refAuthor">Bishop, M.</span>, and <span class="refAuthor">E. Nygren</span>, <span class="refTitle">"Service binding and parameter specification via the DNS (DNS SVCB and HTTPS RRs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-dnsop-svcb-https-08</span>, <time datetime="2021-10-12" class="refDate">12 October 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-08">https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1918">[RFC1918]</dt>
         <dd>

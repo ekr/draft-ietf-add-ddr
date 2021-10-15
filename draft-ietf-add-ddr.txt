@@ -5,13 +5,13 @@
 ADD                                                             T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 4 April 2022                                          C.A. Wood
+Expires: 18 April 2022                                         C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                          1 October 2021
+                                                         15 October 2021
 
 
                    Discovery of Designated Resolvers
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 April 2022.
+   This Internet-Draft will expire on 18 April 2022.
 
 Copyright Notice
 
@@ -170,7 +170,7 @@ Table of Contents
    The following is an example of an SVCB record describing a DoH server
    discovered by querying for _dns.example.net:
 
-   _dns.example.net  7200  IN SVCB 1 . (
+   _dns.example.net.  7200  IN SVCB 1 example.net. (
         alpn=h2 dohpath=/dns-query{?dns} )
 
    The following is an example of an SVCB record describing a DoT server
@@ -334,9 +334,9 @@ Table of Contents
    indicate that resolver.example.com supports both DoH and DoT, and
    that the DoH server indicates a higher priority than the DoT server.
 
-   _dns.resolver.example.com  7200  IN SVCB 1 . (
+   _dns.resolver.example.com.  7200  IN SVCB 1 resolver.example.com. (
         alpn=h2 dohpath=/dns-query{?dns} )
-   _dns.resolver.example.com  7200  IN SVCB 2 . (
+   _dns.resolver.example.com.  7200  IN SVCB 1 resolver.example.com. (
         alpn=dot )
 
    Often, the various supported encrypted DNS protocols will be
@@ -459,9 +459,9 @@ Table of Contents
               Schwartz, B., Bishop, M., and E. Nygren, "Service binding
               and parameter specification via the DNS (DNS SVCB and
               HTTPS RRs)", Work in Progress, Internet-Draft, draft-ietf-
-              dnsop-svcb-https-07, 5 August 2021,
+              dnsop-svcb-https-08, 12 October 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-
-              svcb-https-07>.
+              svcb-https-08>.
 
    [RFC1918]  Rekhter, Y., Moskowitz, B., Karrenberg, D., de Groot, G.
               J., and E. Lear, "Address Allocation for Private
