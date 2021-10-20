@@ -1373,15 +1373,13 @@ resolvers with a large number of referring IP addresses.<a href="#section-6.2-1"
         <h3 id="name-server-name-handling">
 <a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-server-name-handling" class="section-name selfRef">Server Name Handling</a>
         </h3>
-<p id="section-6.3-1">When resolvers are designated using queries for "resolver.arpa" <a href="#bootstrapping" class="xref">Section 4</a>,
-the name of the Designated Resolver is sent via the Server Name Indication
-extension of TLS <span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span> for both DoT and DoH, and the host in the URI for
-DoH.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.3-2">Clients MUST NOT use "resolver.arpa" as the server name. Clients can either use
-IP address of the designating Unencrypted Resolver or the TargetName in the
-ServiceMode SVCB record as the server name.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
-<p id="section-6.3-3">Designated resolvers that support authenticated discovery MUST accept the IP
-address of designating Unencrypted Resolvers as the server name for DoT and DoH.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+<p id="section-6.3-1">Clients MUST NOT use "resolver.arpa" as the server name either in the TLS
+Server Name Indication in TLS (<span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span>) for DoT or DoH; or in the URI host
+for DoH requests.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-2">Designated DoH resolvers that support authenticated discovery MUST accept the IP
+address of designating Unencrypted Resolvers as the URI host. Clients MAY use
+either the IP address or the TargetName in the ServiceMode SVCB record as the
+URI host.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
