@@ -5,13 +5,13 @@
 ADD                                                             T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 28 April 2022                                         C.A. Wood
+Expires: 2 May 2022                                            C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                         25 October 2021
+                                                         29 October 2021
 
 
                    Discovery of Designated Resolvers
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 April 2022.
+   This Internet-Draft will expire on 2 May 2022.
 
 Copyright Notice
 
@@ -338,13 +338,12 @@ Table of Contents
 
    Often, the various supported encrypted DNS protocols will be
    accessible using the same hostname.  In the example above, both DoH
-   and DoT use the name resolver.example.com for their TLS certificates.
-   If a deployment uses a different hostname for one protocol, but still
-   wants clients to treat both DNS servers as designated, the TLS
-   certificates MUST include the name for which the client issued the
-   query in the SubjectAlternativeName field.  Note that this name
-   verification is not related to the DNS resolver that provided the
-   SVCB answer.
+   and DoT use the name resolver.example.com.  If a deployment uses a
+   different hostname for one protocol, but still wants clients to treat
+   both DNS servers as designated, the TLS certificates MUST include the
+   name for which the client issued the query in the
+   SubjectAlternativeName field.  Note that this name verification is
+   not related to the DNS resolver that provided the SVCB answer.
 
    For example, being able to discover a Designated Resolver for a known
    Encrypted Resolver is useful when a client has a DoT configuration
