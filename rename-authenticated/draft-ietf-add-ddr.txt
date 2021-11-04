@@ -5,13 +5,13 @@
 ADD                                                             T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 7 May 2022                                            C.A. Wood
+Expires: 8 May 2022                                            C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                         3 November 2021
+                                                         4 November 2021
 
 
                    Discovery of Designated Resolvers
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 May 2022.
+   This Internet-Draft will expire on 8 May 2022.
 
 Copyright Notice
 
@@ -79,7 +79,7 @@ Table of Contents
    3.  DNS Service Binding Records
    4.  Discovery Using Resolver IP Addresses
      4.1.  Use of Designated Resolvers
-     4.2.  Validated Discovery
+     4.2.  Verified Discovery
      4.3.  Opportunistic Discovery
    5.  Discovery Using Resolver Names
    6.  Deployment Considerations
@@ -147,7 +147,7 @@ Table of Contents
 
    Designated Resolver:  A resolver, presumably an Encrypted Resolver,
       designated by another resolver for use in its own place.  This
-      designation can be validated with TLS certificates.
+      designation can be verified with TLS certificates.
 
    Encrypted Resolver:  A DNS resolver using any encrypted DNS
       transport.  This includes current mechanisms such as DoH and DoT
@@ -247,7 +247,7 @@ Table of Contents
    This document defines two preferred methods to automatically use
    Designated Resolvers:
 
-   *  Validated Discovery Section 4.2, for when a TLS certificate can be
+   *  Verified Discovery Section 4.2, for when a TLS certificate can be
       used to validate the resolver's identity.
 
    *  Opportunistic Discovery Section 4.3, for when a resolver is
@@ -260,13 +260,13 @@ Table of Contents
    Resolver without some sort of validation, such as the two methods
    defined in this document or a future mechanism.
 
-4.2.  Validated Discovery
+4.2.  Verified Discovery
 
-   Validated Discovery is a mechanism that allows automatic use of a
+   Verified Discovery is a mechanism that allows automatic use of a
    Designated Resolver that supports DNS encryption that performs a TLS
    handshake.
 
-   In order to be considered a validated Designated Resolver, the TLS
+   In order to be considered a verified Designated Resolver, the TLS
    certificate presented by the Designated Resolver MUST contain the IP
    address of the designating Unencrypted Resolver within the
    SubjectAlternativeName certificate field.  If the certificate can be
@@ -293,7 +293,7 @@ Table of Contents
 
 4.3.  Opportunistic Discovery
 
-   There are situations where validated discovery of encrypted DNS
+   There are situations where Verified Discovery of encrypted DNS
    configuration over unencrypted DNS is not possible.  This includes
    Unencrypted Resolvers on non-public IP addresses such as those
    defined in [RFC1918] whose identity cannot be confirmed using TLS
@@ -379,11 +379,11 @@ Table of Contents
    Operators who choose to forward queries for "resolver.arpa" upstream
    should note that client behavior is never guaranteed and use of DDR
    by a resolver does not communicate a requirement for clients to use
-   the SVCB record when it cannot be validated.
+   the SVCB record when it cannot be verified.
 
 6.2.  Certificate Management
 
-   Resolver owners that support Validated Discovery will need to list
+   Resolver owners that support Verified Discovery will need to list
    valid referring IP addresses in their TLS certificates.  This may
    pose challenges for resolvers with a large number of referring IP
    addresses.
@@ -394,7 +394,7 @@ Table of Contents
    TLS Server Name Indication in TLS ([RFC8446]) for DoT or DoH
    connections, or in the URI host for DoH requests.
 
-   Designated DoH resolvers that support Validated Discovery for clients
+   Designated DoH resolvers that support Verified Discovery for clients
    that only know an IP address MUST accept both of the following as the
    URI host in requests:
 
@@ -426,7 +426,7 @@ Table of Contents
    network.
 
    If the IP address of a Designated Resolver differs from that of an
-   Unencrypted Resolver, clients applying Validated Discovery
+   Unencrypted Resolver, clients applying Verified Discovery
    (Section 4.2) MUST validate that the IP address of the Unencrypted
    Resolver is covered by the SubjectAlternativeName of the Designated
    Resolver's TLS certificate.
@@ -437,7 +437,7 @@ Table of Contents
 
    The constraints on validation of Designated Resolvers specified here
    apply specifically to the automatic discovery mechanisms defined in
-   this document, which are referred to as Validated Discovery and
+   this document, which are referred to as Verified Discovery and
    Opportunistic Discovery.  Clients MAY use some other mechanism to
    validate and use Designated Resolvers discovered using the DNS SVCB
    record.  However, use of such an alternate mechanism needs to take

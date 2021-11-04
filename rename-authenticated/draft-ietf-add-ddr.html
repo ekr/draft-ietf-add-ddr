@@ -851,7 +851,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pauly, et al.</td>
-<td class="center">Expires 7 May 2022</td>
+<td class="center">Expires 8 May 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -864,12 +864,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-add-ddr-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-11-03" class="published">3 November 2021</time>
+<time datetime="2021-11-04" class="published">4 November 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-05-07">7 May 2022</time></dd>
+<dd class="expires"><time datetime="2022-05-08">8 May 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -937,7 +937,7 @@ is known.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -987,7 +987,7 @@ is known.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-use-of-designated-resolvers" class="xref">Use of Designated Resolvers</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-validated-discovery" class="xref">Validated Discovery</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-verified-discovery" class="xref">Verified Discovery</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
                 <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-opportunistic-discovery" class="xref">Opportunistic Discovery</a></p>
@@ -1109,7 +1109,7 @@ in this document.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
 Designated Resolver:  </dt>
         <dd style="margin-left: 1.5em" id="section-2-2.4">
           <p id="section-2-2.4.1">A resolver, presumably an Encrypted Resolver, designated by another resolver
-for use in its own place. This designation can be validated with TLS certificates.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
+for use in its own place. This designation can be verified with TLS certificates.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.5">
@@ -1167,7 +1167,7 @@ that block the completion of the TLS handshake.<a href="#section-3-8" class="pil
 Other protocols can also use the format defined by <span>[<a href="#I-D.ietf-add-svcb-dns" class="xref">I-D.ietf-add-svcb-dns</a>]</span>.
 However, if any protocol does not involve some form of certificate validation,
 new validation mechanisms will need to be defined to support validating
-designation as defined in <a href="#validated" class="xref">Section 4.2</a>.<a href="#section-3-9" class="pilcrow">¶</a></p>
+designation as defined in <a href="#verified" class="xref">Section 4.2</a>.<a href="#section-3-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="bootstrapping">
@@ -1223,7 +1223,7 @@ or based on some other policy, heuristic, or user choice.<a href="#section-4.1-1
 <p id="section-4.1-2">This document defines two preferred methods to automatically use Designated
 Resolvers:<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1-3.1">Validated Discovery <a href="#validated" class="xref">Section 4.2</a>, for when a TLS certificate can
+<li class="normal" id="section-4.1-3.1">Verified Discovery <a href="#verified" class="xref">Section 4.2</a>, for when a TLS certificate can
 be used to validate the resolver's identity.<a href="#section-4.1-3.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.1-3.2">Opportunistic Discovery <a href="#opportunistic" class="xref">Section 4.3</a>, for when a resolver is accessed
@@ -1237,14 +1237,14 @@ automatically use a Designated Resolver without some sort of validation,
 such as the two methods defined in this document or a future mechanism.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="validated">
+<div id="verified">
 <section id="section-4.2">
-        <h3 id="name-validated-discovery">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-validated-discovery" class="section-name selfRef">Validated Discovery</a>
+        <h3 id="name-verified-discovery">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-verified-discovery" class="section-name selfRef">Verified Discovery</a>
         </h3>
-<p id="section-4.2-1">Validated Discovery is a mechanism that allows automatic use of a
+<p id="section-4.2-1">Verified Discovery is a mechanism that allows automatic use of a
 Designated Resolver that supports DNS encryption that performs a TLS handshake.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">In order to be considered a validated Designated Resolver, the
+<p id="section-4.2-2">In order to be considered a verified Designated Resolver, the
 TLS certificate presented by the Designated Resolver MUST contain the IP address
 of the designating Unencrypted Resolver within the SubjectAlternativeName certificate
 field. If the certificate can be validated, the client SHOULD use the discovered
@@ -1270,7 +1270,7 @@ a previously known and validated IP address for the same Designated Resolver nam
         <h3 id="name-opportunistic-discovery">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-opportunistic-discovery" class="section-name selfRef">Opportunistic Discovery</a>
         </h3>
-<p id="section-4.3-1">There are situations where validated discovery of encrypted DNS
+<p id="section-4.3-1">There are situations where Verified Discovery of encrypted DNS
 configuration over unencrypted DNS is not possible. This includes Unencrypted
 Resolvers on non-public IP addresses such as those defined in <span>[<a href="#RFC1918" class="xref">RFC1918</a>]</span> whose
 identity cannot be confirmed using TLS certificates.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
@@ -1359,7 +1359,7 @@ information opportunistically.<a href="#section-6.1-1" class="pilcrow">¶</a></p
 <p id="section-6.1-2">Operators who choose to forward queries for "resolver.arpa" upstream should note
 that client behavior is never guaranteed and use of DDR by a resolver does not
 communicate a requirement for clients to use the SVCB record when it cannot be
-validated.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+verified.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="certificate-management">
@@ -1367,7 +1367,7 @@ validated.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
         <h3 id="name-certificate-management">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-certificate-management" class="section-name selfRef">Certificate Management</a>
         </h3>
-<p id="section-6.2-1">Resolver owners that support Validated Discovery will need to list valid
+<p id="section-6.2-1">Resolver owners that support Verified Discovery will need to list valid
 referring IP addresses in their TLS certificates. This may pose challenges for
 resolvers with a large number of referring IP addresses.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 </section>
@@ -1380,7 +1380,7 @@ resolvers with a large number of referring IP addresses.<a href="#section-6.2-1"
 <p id="section-6.3-1">Clients MUST NOT use "resolver.arpa" as the server name either in the TLS
 Server Name Indication in TLS (<span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span>) for DoT or DoH connections,
 or in the URI host for DoH requests.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.3-2">Designated DoH resolvers that support Validated Discovery for clients
+<p id="section-6.3-2">Designated DoH resolvers that support Verified Discovery for clients
 that only know an IP address MUST accept both of the following as the
 URI host in requests:<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1415,14 +1415,14 @@ a different IP address from the Unencrypted Resolver. Such a Designated Resolver
 might have a valid certificate, but be operated by an attacker that is trying to
 observe or modify user queries without the knowledge of the client or network.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">If the IP address of a Designated Resolver differs from that of an
-Unencrypted Resolver, clients applying Validated Discovery (<a href="#validated" class="xref">Section 4.2</a>) MUST
+Unencrypted Resolver, clients applying Verified Discovery (<a href="#verified" class="xref">Section 4.2</a>) MUST
 validate that the IP address of the Unencrypted Resolver is covered by the
 SubjectAlternativeName of the Designated Resolver's TLS certificate.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">Clients using Opportunistic Discovery (<a href="#opportunistic" class="xref">Section 4.3</a>) MUST be limited to cases
 where the Unencrypted Resolver and Designated Resolver have the same IP address.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <p id="section-7-5">The constraints on validation of Designated Resolvers specified here apply specifically
 to the automatic discovery mechanisms defined in this document, which are
-referred to as Validated Discovery and Opportunistic Discovery. Clients
+referred to as Verified Discovery and Opportunistic Discovery. Clients
 MAY use some other mechanism to validate and use Designated Resolvers discovered
 using the DNS SVCB record. However, use of such an alternate mechanism needs
 to take into account the attack scenarios detailed here.<a href="#section-7-5" class="pilcrow">¶</a></p>
