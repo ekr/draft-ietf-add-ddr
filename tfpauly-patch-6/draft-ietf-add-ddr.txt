@@ -5,13 +5,13 @@
 ADD                                                             T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 8 May 2022                                            C.A. Wood
+Expires: 12 May 2022                                           C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                         4 November 2021
+                                                         8 November 2021
 
 
                    Discovery of Designated Resolvers
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2022.
+   This Internet-Draft will expire on 12 May 2022.
 
 Copyright Notice
 
@@ -392,18 +392,16 @@ Table of Contents
 6.3.  Server Name Handling
 
    Clients MUST NOT use "resolver.arpa" as the server name either in the
-   TLS Server Name Indication in TLS ([RFC8446]) for DoT or DoH
+   TLS Server Name Indication (SNI) ([RFC8446]) for DoT or DoH
    connections, or in the URI host for DoH requests.
 
-   Designated DoH resolvers that support Verified Discovery for clients
-   that only know an IP address MUST accept both of the following as the
-   URI host in requests:
+   When performing discovery using resolver IP addresses, clients MUST
+   use the IP address as the URI host for DoH requests.
 
-   *  the IP address of designating Unencrypted Resolver.
-
-   *  the TargetName in the ServiceMode SVCB record, which is the
-      hostname that maps to the address (A and AAAA) records used to
-      connect to the Encrypted Resolver.
+   Note that since IP addresses are not supported by default in the TLS
+   SNI, resolvers that support discovery using IP addresses will need to
+   be configured to present the appropriate TLS certificate when no SNI
+   is present for both DoT and DoH.
 
 7.  Security Considerations
 
