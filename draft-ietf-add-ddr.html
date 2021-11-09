@@ -851,7 +851,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pauly, et al.</td>
-<td class="center">Expires 8 May 2022</td>
+<td class="center">Expires 13 May 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -864,12 +864,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-add-ddr-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-11-04" class="published">4 November 2021</time>
+<time datetime="2021-11-09" class="published">9 November 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-05-08">8 May 2022</time></dd>
+<dd class="expires"><time datetime="2022-05-13">13 May 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -937,7 +937,7 @@ is known.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1380,26 +1380,29 @@ should be aware that it might not be possible to distinguish between resolvers
 that do not have any Designated Resolver and such an active attack.
 To limit the impact of discovery queries being dropped either maliciously or
 unintentionally, clients can re-send their SVCB queries periodically.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">While the IP address of the Unencrypted Resolver is often provisioned over
+<p id="section-7-2">DoH resolvers that allow discovery using DNS SVCB answers over unencrypted
+DNS MUST NOT provide differentiated behavior based on the HTTP path alone,
+since an attacker could modify the "dohpath" parameter.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">While the IP address of the Unencrypted Resolver is often provisioned over
 insecure mechanisms, it can also be provisioned securely, such as via manual
 configuration, a VPN, or on a network with protections like RA guard
 <span>[<a href="#RFC6105" class="xref">RFC6105</a>]</span>. An attacker might try to direct Encrypted DNS traffic to itself by
 causing the client to think that a discovered Designated Resolver uses
 a different IP address from the Unencrypted Resolver. Such a Designated Resolver
 might have a valid certificate, but be operated by an attacker that is trying to
-observe or modify user queries without the knowledge of the client or network.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">If the IP address of a Designated Resolver differs from that of an
+observe or modify user queries without the knowledge of the client or network.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">If the IP address of a Designated Resolver differs from that of an
 Unencrypted Resolver, clients applying Verified Discovery (<a href="#verified" class="xref">Section 4.2</a>) MUST
 validate that the IP address of the Unencrypted Resolver is covered by the
-SubjectAlternativeName of the Designated Resolver's TLS certificate.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">Clients using Opportunistic Discovery (<a href="#opportunistic" class="xref">Section 4.3</a>) MUST be limited to cases
-where the Unencrypted Resolver and Designated Resolver have the same IP address.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">The constraints on the use of Designated Resolvers specified here apply
+SubjectAlternativeName of the Designated Resolver's TLS certificate.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">Clients using Opportunistic Discovery (<a href="#opportunistic" class="xref">Section 4.3</a>) MUST be limited to cases
+where the Unencrypted Resolver and Designated Resolver have the same IP address.<a href="#section-7-5" class="pilcrow">¶</a></p>
+<p id="section-7-6">The constraints on the use of Designated Resolvers specified here apply
 specifically to the automatic discovery mechanisms defined in this document, which are
 referred to as Verified Discovery and Opportunistic Discovery. Clients
 MAY use some other mechanism to verify and use Designated Resolvers discovered
 using the DNS SVCB record. However, use of such an alternate mechanism needs
-to take into account the attack scenarios detailed here.<a href="#section-7-5" class="pilcrow">¶</a></p>
+to take into account the attack scenarios detailed here.<a href="#section-7-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana">
