@@ -5,13 +5,13 @@
 ADD                                                             T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 13 May 2022                                           C.A. Wood
+Expires: 18 May 2022                                           C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                         9 November 2021
+                                                        14 November 2021
 
 
                    Discovery of Designated Resolvers
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 May 2022.
+   This Internet-Draft will expire on 18 May 2022.
 
 Copyright Notice
 
@@ -85,6 +85,7 @@ Table of Contents
    6.  Deployment Considerations
      6.1.  Caching Forwarders
      6.2.  Certificate Management
+     6.3.  Server Name Handling
    7.  Security Considerations
    8.  IANA Considerations
      8.1.  Special Use Domain Name "resolver.arpa"
@@ -161,11 +162,10 @@ Table of Contents
    entity.
 
    When a client discovers Designated Resolvers, it learns information
-   such as the supported protocols, ports, and server name to use in
-   certificate validation.  This information is provided in Service
-   Binding (SVCB) records for DNS Servers.  The formatting of these
-   records, including the DNS-unique parameters such as "dohpath", are
-   defined by [I-D.ietf-add-svcb-dns].
+   such as the supported protocols and ports.  This information is
+   provided in Service Binding (SVCB) records for DNS Servers.  The
+   formatting of these records, including the DNS-unique parameters such
+   as "dohpath", are defined by [I-D.ietf-add-svcb-dns].
 
    The following is an example of an SVCB record describing a DoH server
    discovered by querying for _dns.example.net:
@@ -267,21 +267,18 @@ Table of Contents
    handshake.
 
    In order to be considered a verified Designated Resolver, the TLS
-   certificate presented by the Designated Resolver MUST contain both
-   the domain name (from the SVCB answer) and the IP address of the
-   designating Unencrypted Resolver within the SubjectAlternativeName
-   certificate field.  The client MUST check the SubjectAlternativeName
-   field for both the Unencrypted Resolver's IP address and the
-   advertised name of the Designated Resolver.  If the certificate can
-   be validated, the client SHOULD use the discovered Designated
-   Resolver for any cases in which it would have otherwise used the
-   Unencrypted Resolver.  If the Designated Resolver has a different IP
-   address than the Unencrypted Resolver and the TLS certificate does
-   not cover the Unencrypted Resolver address, the client MUST NOT
-   automatically use the discovered Designated Resolver.  Additionally,
-   the client SHOULD suppress any further queries for Designated
-   Resolvers using this Unencrypted Resolver for the length of time
-   indicated by the SVCB record's Time to Live (TTL).
+   certificate presented by the Designated Resolver MUST contain the IP
+   address of the designating Unencrypted Resolver in a subjectAltName
+   extension.  If the certificate can be validated, the client SHOULD
+   use the discovered Designated Resolver for any cases in which it
+   would have otherwise used the Unencrypted Resolver.  If the
+   Designated Resolver has a different IP address than the Unencrypted
+   Resolver and the TLS certificate does not cover the Unencrypted
+   Resolver address, the client MUST NOT automatically use the
+   discovered Designated Resolver.  Additionally, the client SHOULD
+   suppress any further queries for Designated Resolvers using this
+   Unencrypted Resolver for the length of time indicated by the SVCB
+   record's Time to Live (TTL).
 
    If the Designated Resolver and the Unencrypted Resolver share an IP
    address, clients MAY choose to opportunistically use the Designated
@@ -309,8 +306,9 @@ Table of Contents
    approach (not validating the names presented in the
    SubjectAlternativeName field of the certificate) as long as the IP
    address of the Encrypted Resolver does not differ from the IP address
-   of the Unencrypted Resolver.  This approach can be used for any
-   encrypted DNS protocol that uses TLS.
+   of the Unencrypted Resolver.  Clients SHOULD use this mode only for
+   resolvers using non-public IP addresses.  This approach can be used
+   for any encrypted DNS protocol that uses TLS.
 
 5.  Discovery Using Resolver Names
 
@@ -339,22 +337,27 @@ Table of Contents
    _dns.resolver.example.com.  7200  IN SVCB 1 resolver.example.com. (
         alpn=dot )
 
-   Often, the various supported encrypted DNS protocols will be
-   accessible using the same hostname.  In the example above, both DoH
-   and DoT use the name resolver.example.com for their TLS certificates.
-   If a deployment uses a different hostname for one protocol, but still
-   wants clients to treat both DNS servers as designated, the TLS
-   certificates MUST include both names in the SubjectAlternativeName
-   fields.  Note that this name verification is not related to the DNS
-   resolver that provided the SVCB answer.
+   Clients MUST validate that for any Encrypted Resolver discovered
+   using a known resolver name, the TLS certificate of the resolver
+   contains the known name in a subjectAltName extension.  In the
+   example above, this means that both servers need to have certificates
+   that cover the name resolver.example.com.  Often, the various
+   supported encrypted DNS protocols will be specified such that the
+   SVCB TargetName matches the known name, as is true in the example
+   above.  However, even when the TargetName is different (for example,
+   if the DoH server had a TargetName of doh.example.com), the clients
+   still check for the original known resolver name in the certificate.
 
-   For example, being able to discover a Designated Resolver for a known
-   Encrypted Resolver is useful when a client has a DoT configuration
-   for foo.resolver.example.com but is on a network that blocks DoT
-   traffic.  The client can still send a query to any other accessible
-   resolver (either the local network resolver or an accessible DoH
-   server) to discover if there is a designated DoH server for
-   foo.resolver.example.com.
+   Note that this resolver validation is not related to the DNS resolver
+   that provided the SVCB answer.
+
+   As another example, being able to discover a Designated Resolver for
+   a known Encrypted Resolver is useful when a client has a DoT
+   configuration for foo.resolver.example.com but is on a network that
+   blocks DoT traffic.  The client can still send a query to any other
+   accessible resolver (either the local network resolver or an
+   accessible DoH server) to discover if there is a designated DoH
+   server for foo.resolver.example.com.
 
 6.  Deployment Considerations
 
@@ -385,6 +388,20 @@ Table of Contents
    valid referring IP addresses in their TLS certificates.  This may
    pose challenges for resolvers with a large number of referring IP
    addresses.
+
+6.3.  Server Name Handling
+
+   Clients MUST NOT use "resolver.arpa" as the server name either in the
+   TLS Server Name Indication (SNI) ([RFC8446]) for DoT or DoH
+   connections, or in the URI host for DoH requests.
+
+   When performing discovery using resolver IP addresses, clients MUST
+   use the IP address as the URI host for DoH requests.
+
+   Note that since IP addresses are not supported by default in the TLS
+   SNI, resolvers that support discovery using IP addresses will need to
+   be configured to present the appropriate TLS certificate when no SNI
+   is present for both DoT and DoH.
 
 7.  Security Considerations
 
@@ -531,6 +548,10 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
+
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://datatracker.ietf.org/doc/html/rfc8446>.
 
    [RFC8880]  Cheshire, S. and D. Schinazi, "Special Use Domain Name
               'ipv4only.arpa'", RFC 8880, DOI 10.17487/RFC8880, August
